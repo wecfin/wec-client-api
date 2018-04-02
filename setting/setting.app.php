@@ -2,8 +2,8 @@
 $collection = new \Gap\Config\ConfigCollection();
 $collection
     ->set("app", [
-        "Gap\Project" => [
-            "dir" => "app/gap/project",
+        "Wec\Client" => [
+            "dir" => "app/wec/client",
         ],
     ]);
 return $collection;

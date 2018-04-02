@@ -4,7 +4,7 @@ $collection = new \Gap\Config\ConfigCollection();
 $collection
     ->set('site', [
         'default' => [
-            'host' => 'www.%baseHost%',
+            'host' => 'client-api.%baseHost%',
         ],
         'static' => [
             'host' => 'static.%baseHost%',
