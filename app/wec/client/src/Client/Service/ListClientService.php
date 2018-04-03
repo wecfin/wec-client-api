@@ -1,7 +1,7 @@
 <?php
-namespace Wec\Client\Landing\Service;
+namespace Wec\Client\Client\Service;
 
-use Wec\Client\Landing\Repo\ListClientRepo;
+use Wec\Client\Client\Repo\ListClientRepo;
 use Gap\Db\Collection;
 
 class ListClientService extends ServiceBase

@@ -1,5 +1,5 @@
 <?php
-namespace Wec\Client\Landing\Dto;
+namespace Wec\Client\Client\Dto;
 
 class ClientDto extends DtoBase
 {

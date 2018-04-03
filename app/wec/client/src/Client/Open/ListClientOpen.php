@@ -1,8 +1,8 @@
 <?php
-namespace Wec\Client\Landing\Open;
+namespace Wec\Client\Client\Open;
 
 use Gap\Http\JsonResponse;
-use Wec\Client\Landing\Service\ListClientService;
+use Wec\Client\Client\Service\ListClientService;
 
 class ListClientOpen extends OpenBase
 {

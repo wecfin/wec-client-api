@@ -1,8 +1,8 @@
 <?php
-namespace Wec\Client\Landing\Repo;
+namespace Wec\Client\Client\Repo;
 
 use Gap\Db\Collection;
-use Wec\Client\Landing\Dto\ClientDto;
+use Wec\Client\Client\Dto\ClientDto;
 
 class ListClientRepo extends RepoBase
 {

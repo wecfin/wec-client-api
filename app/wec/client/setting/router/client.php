@@ -8,7 +8,7 @@ $collection
     ->postOpen(
         '/list-client',
         'listClient',
-        'Wec\Client\Landing\Open\ListClientOpen@postOpen'
+        'Wec\Client\Client\Open\ListClientOpen@postOpen'
     );
     
 return $collection;
