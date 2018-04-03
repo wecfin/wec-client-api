@@ -2,16 +2,16 @@
 namespace Wec\Client\Contact\Open;
 
 use Gap\Http\JsonResponse;
-use Wec\Client\Contact\Service\ListContactService;
+use Wec\Client\Contact\Service\ListContactInClientService;
 
-class ListContactOpen extends OpenBase
+class ListContactInClientOpen extends OpenBase
 {
     public function postOpen(): JsonResponse
     {
         $post = $this->request->request;
         $clientId = $post->get('clientId');
 
-        $contacts = (new ListContactService($this->getApp()))
+        $contacts = (new ListContactInClientService($this->getApp()))
             ->listByClientId($clientId);
 
         return new JsonResponse($contacts);

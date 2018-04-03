@@ -4,7 +4,7 @@ namespace Wec\Client\Contact\Repo;
 use Wec\Client\Contact\Dto\ContactDto;
 use Gap\Db\Collection;
 
-class ListContactRepo extends RepoBase
+class ListContactInClientRepo extends RepoBase
 {
     public function listByClientId(string $clientId): Collection
     {
