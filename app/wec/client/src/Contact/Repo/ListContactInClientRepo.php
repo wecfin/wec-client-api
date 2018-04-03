@@ -13,7 +13,15 @@ class ListContactInClientRepo extends RepoBase
         }
 
         return $this->cnn->ssb()
-            ->select('c.*')
+            ->select(
+                'c.contactId',
+                'c.name',
+                'c.telephone',
+                'c.mobilephone',
+                'c.mail',
+                'c.created',
+                'c.changed'
+            )
             ->from('contact c')
             ->end()
             ->where()
