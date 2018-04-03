@@ -10,7 +10,6 @@ class ListClientInCompanyRepo extends RepoBase
     {
         if (!$companyId) {
             throw new \Exception('companyId cannot be null');
-
         }
         
         return $this->cnn->ssb()
