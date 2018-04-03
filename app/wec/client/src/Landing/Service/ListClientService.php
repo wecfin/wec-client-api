@@ -1,14 +1,14 @@
 <?php
 namespace Wec\Client\Landing\Service;
 
-use Wec\Client\Landing\Repo\ListClientInCompanyRepo;
+use Wec\Client\Landing\Repo\ListClientRepo;
 use Gap\Db\Collection;
 
-class ListClientInCompanyService extends ServiceBase
+class ListClientService extends ServiceBase
 {
     public function listByCompanyId(string $companyId): Collection
     {
-        return (new ListClientInCompanyRepo($this->getDmg()))
+        return (new ListClientRepo($this->getDmg()))
             ->listByCompanyId($companyId);
     }
 }

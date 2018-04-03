@@ -4,7 +4,7 @@ namespace Wec\Client\Landing\Repo;
 use Gap\Db\Collection;
 use Wec\Client\Landing\Dto\ClientDto;
 
-class ListClientInCompanyRepo extends RepoBase
+class ListClientRepo extends RepoBase
 {
     public function listByCompanyId(string $companyId): Collection
     {

@@ -2,16 +2,16 @@
 namespace Wec\Client\Landing\Open;
 
 use Gap\Http\JsonResponse;
-use Wec\Client\Landing\Service\ListClientInCompanyService;
+use Wec\Client\Landing\Service\ListClientService;
 
-class ListClientInCompanyOpen extends OpenBase
+class ListClientOpen extends OpenBase
 {
     public function postOpen(): JsonResponse
     {
         $post = $this->request->request;
         $companyId = $post->get('companyId');
 
-        $clients = (new ListClientInCompanyService($this->getApp()))
+        $clients = (new ListClientService($this->getApp()))
             ->listByCompanyId($companyId);
         
         $defaultPage = 1;
