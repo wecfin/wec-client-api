@@ -37,9 +37,8 @@ class ListClientRepo extends RepoBase
 
         return $ssb
             ->where()
-                ->expect('c.employeeId')->equal()->str($employeeId)
+                ->expect('o.employeeId')->equal()->str($employeeId)
                 ->andExpect('c.type')->equal()->str($type)
-                
             ->end()
             ->list(ClientDto::class);
     }
@@ -54,7 +53,7 @@ class ListClientRepo extends RepoBase
 
         return $ssb
             ->where()
-                ->expect('c.groupId')->equal()->str($groupId)
+                ->expect('o.groupId')->equal()->str($groupId)
                 ->andExpect('c.type')->equal()->str($type)
             ->end()
             ->list(ClientDto::class);
@@ -68,13 +67,19 @@ class ListClientRepo extends RepoBase
             'c.clientCode',
             'c.type',
             'c.name',
-            'c.employeeId',
-            'c.groupId',
             'c.address',
+            'o.employeeId employeeId',
+            'o.name employeeName',
+            'o.groupId groupId',
+            'o.groupName groupName',
             'c.created',
             'c.changed'
         )
         ->from('client c')
+            ->leftJoin('client_owner o')
+                ->onCond()
+                    ->expect('c.clientId')->equal()->expr('o.clientId')
+            ->endJoin()
         ->end();
     }
 }
