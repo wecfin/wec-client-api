@@ -16,13 +16,13 @@ class ListContactInClientRepo extends RepoBase
             ->select(
                 'c.contactId',
                 'c.name',
-                'c.telephone',
-                'c.mobilephone',
-                'c.mail',
+                'c.tel',
+                'c.mobile',
+                'c.email',
                 'c.created',
                 'c.changed'
             )
-            ->from('contact c')
+            ->from('client_contact c')
             ->end()
             ->where()
                 ->expect('c.clientId')->equal()->str($clientId)

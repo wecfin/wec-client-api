@@ -9,7 +9,6 @@ class ClientDto extends DtoBase
     public $name;
     public $employeeId;
     public $groupId;
-    public $companyId;    
     public $address;
     public $created;
     public $changed;

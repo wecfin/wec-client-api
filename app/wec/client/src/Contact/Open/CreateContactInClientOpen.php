@@ -14,9 +14,9 @@ class CreateContactInClientOpen extends OpenBase
 
         $contact = new ContactDto([
             'name' => $post->get('name'),
-            'telephone' => $post->get('telephone'),
-            'mobilephone' => $post->get('mobilephone'),
-            'mail' => $post->get('mail')
+            'tel' => $post->get('tel'),
+            'mobile' => $post->get('mobile'),
+            'email' => $post->get('email')
         ]);
 
         (new CreateContactInClientService($this->getApp()))

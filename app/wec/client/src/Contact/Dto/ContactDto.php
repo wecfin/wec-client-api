@@ -5,9 +5,9 @@ class ContactDto extends DtoBase
 {
     public $contactId;
     public $name;
-    public $telephone;
-    public $mobilephone;
-    public $mail;
+    public $tel;
+    public $mobile;
+    public $email;
     public $created;
     public $changed;
 }

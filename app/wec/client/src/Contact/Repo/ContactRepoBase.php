@@ -21,12 +21,12 @@ class ContactRepoBase extends \Wec\Client\Base\Repo\RepoBase
         }
     }
 
-    protected function validateMailPattern($mail): void
+    protected function validateMailPattern($email): void
     {
         $mailRegex = "/\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/";
 
-        if (!preg_match($mailRegex, $mail)) {
-            throw new \Exception('mail pattern error');
+        if (!preg_match($mailRegex, $email)) {
+            throw new \Exception('email pattern error');
         }
     }
 }

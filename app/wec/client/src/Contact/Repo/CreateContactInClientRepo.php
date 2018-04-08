@@ -24,14 +24,14 @@ class CreateContactInClientRepo extends ContactRepoBase
         $contact->changed = $now;
 
         $this->cnn->isb()
-            ->insert('contact')
+            ->insert('client_contact')
             ->field(
                 'clientId',
                 'contactId',
                 'name',
-                'telephone',
-                'mobilephone',
-                'mail',
+                'tel',
+                'mobile',
+                'email',
                 'created',
                 'changed'
             )
@@ -39,9 +39,9 @@ class CreateContactInClientRepo extends ContactRepoBase
                 ->addStr($clientId)
                 ->addStr($contact->contactId)
                 ->addStr($contact->name)
-                ->addStr($contact->telephone ?? '')
-                ->addStr($contact->mobilephone ?? '')
-                ->addStr($contact->mail ?? '')
+                ->addStr($contact->tel ?? '')
+                ->addStr($contact->mobile ?? '')
+                ->addStr($contact->email ?? '')
                 ->addDateTime($contact->created)
                 ->addDateTime($contact->changed)
             ->end()
@@ -52,16 +52,16 @@ class CreateContactInClientRepo extends ContactRepoBase
 
     protected function validate(ContactDto $contact): void
     {
-        if ($telephone = $contact->telephone) {
-            $this->validateTelephonePattern($telephone);
+        if ($tel = $contact->tel) {
+            $this->validateTelephonePattern($tel);
         }
 
-        if ($mobilephone = $contact->mobilephone) {
-            $this->validateMobilePhonePattern($mobilephone);
+        if ($mobile = $contact->mobile) {
+            $this->validateMobilePhonePattern($mobile);
         }
 
-        if ($mail = $contact->mail) {
-            $this->validateMailPattern($mail);
+        if ($email = $contact->email) {
+            $this->validateMailPattern($email);
         }
     }
 }
