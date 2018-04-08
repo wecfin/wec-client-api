@@ -4,7 +4,7 @@ namespace Wec\Client\Client\Repo;
 use Wec\Client\Client\Dto\ClientDto;
 use Gap\Dto\DateTime;
 
-class FetchClientRepo extends RepoBase
+class FetchClientRepo extends ClientRepoBase
 {
     public function fetchLastCreatedClientByType(string $companyId, string $type): ? ClientDto
     {
@@ -16,20 +16,8 @@ class FetchClientRepo extends RepoBase
             throw new \Exception('client type cannot be null');
         }
 
-        return $this->cnn->ssb()
-            ->select(
-                'c.clientId',
-                'c.clientCode',
-                'c.type',
-                'c.name',
-                'c.employeeId',
-                'c.groupId',
-                'c.address',
-                'c.created',
-                'c.changed'
-            )
-            ->from('client c')
-            ->end()
+        $ssb = $this->getClientSsb();
+        return $ssb
             ->where()
                 ->expect('c.companyId')->equal()->str($companyId)
                 ->andExpect('c.type')->equal()->str($type)

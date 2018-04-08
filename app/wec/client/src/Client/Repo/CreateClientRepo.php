@@ -19,11 +19,17 @@ class CreateClientRepo extends RepoBase
         $client->clientCode = (new GenerateClientCodeRepo($this->dmg))
             ->generate($companyId, $client->type);
 
+        $client->source = $client->source ?? 'system';
+        
         $now = new DateTime();
         $client->created = $now;
         $client->changed = $now;
 
-        $ssb = $this->cnn->isb()
+        $cnn = $this->cnn;
+        $cnn->trans()->begin();
+        
+        try {
+            $cnn->isb()
             ->insert('client')
             ->field(
                 'clientId',
@@ -31,8 +37,6 @@ class CreateClientRepo extends RepoBase
                 'clientCode',
                 'type',
                 'name',
-                'employeeId',
-                'groupId',
                 'address',
                 'created',
                 'changed'
@@ -43,13 +47,36 @@ class CreateClientRepo extends RepoBase
                 ->addStr($client->clientCode)
                 ->addStr($client->type)
                 ->addStr(trim($client->name))
-                ->addStr($client->employeeId ?? '')
-                ->addStr($client->groupId ?? '')
                 ->addStr($client->address ?? '')
                 ->addDateTime($client->created)
                 ->addDateTime($client->changed)
             ->end()
             ->execute();
+
+            $cnn->isb()
+                ->insert('client_owner')
+                ->field(
+                    'clientId',
+                    'employeeId',
+                    'name',
+                    'groupId',
+                    'groupName'
+                )
+                ->value()
+                    ->addStr($client->clientId)
+                    ->addStr($client->employeeId ?? '')
+                    ->addStr(trim($client->employeeName) ?? '')
+                    ->addStr($client->groupId ?? '')
+                    ->addStr(trim($client->groupName) ?? '')
+                ->end()
+                ->execute();
+
+        } catch (\Exception $e) {
+            $cnn->trans()->rollback();
+            throw new \Exception($e->getMessage());
+        }
+        
+        $cnn->trans()->commit();
 
         return $client;
     }
@@ -60,7 +87,7 @@ class CreateClientRepo extends RepoBase
             throw new \Exception('client name cannot be null');
         }
 
-        if ($client->employeeId) {
+        if (!$client->employeeId) {
             throw new \Exception('client belonged employee cannot be null');
         }
 

@@ -17,7 +17,9 @@ class CreateClientOpen extends OpenBase
             'type' => $post->get('type'),
             'name' => $post->get('name'),
             'employeeId' => $post->get('employeeId'),
+            'employeeName' => $post->get('employeeName'),
             'groupId' => $post->get('groupId'),
+            'groupName' => $post->get('groupName'),
             'address' => $post->get('address')
         ]);
 
