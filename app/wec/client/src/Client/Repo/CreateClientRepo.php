@@ -53,7 +53,8 @@ class CreateClientRepo extends RepoBase
             ->end()
             ->execute();
 
-            $cnn->isb()
+            if ($client->type == 'customer') {
+                $cnn->isb()
                 ->insert('client_owner')
                 ->field(
                     'clientId',
@@ -70,6 +71,7 @@ class CreateClientRepo extends RepoBase
                     ->addStr(trim($client->groupName) ?? '')
                 ->end()
                 ->execute();
+            }
         } catch (\Exception $e) {
             $cnn->trans()->rollback();
             throw new \Exception($e->getMessage());
@@ -86,12 +88,12 @@ class CreateClientRepo extends RepoBase
             throw new \Exception('client name cannot be null');
         }
 
-        if (!$client->employeeId) {
-            throw new \Exception('client belonged employee cannot be null');
-        }
-
         if ($client->type !== 'customer' && $client->type !== 'supplier') {
             throw new \Exception('client type error');
+        }
+
+        if ($client->type == 'customer' && !$client->employeeId) {
+            throw new \Exception('customer belonged employee cannot be null');
         }
     }
 }
