@@ -14,6 +14,11 @@ $collection
         '/create-contact-in-client',
         'createContactInClient',
         'Wec\Client\Contact\Open\CreateContactInClientOpen@postOpen'
+    )
+    ->postOpen(
+        '/update-contact-in-client',
+        'updateContactInClient',
+        'Wec\Client\Contact\Open\UpdateContactInClientOpen@postOpen'
     );
 
 return $collection;

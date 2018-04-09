@@ -49,19 +49,4 @@ class CreateContactInClientRepo extends ContactRepoBase
 
         return $contact;
     }
-
-    protected function validate(ContactDto $contact): void
-    {
-        if ($tel = $contact->tel) {
-            $this->validateTelephonePattern($tel);
-        }
-
-        if ($mobile = $contact->mobile) {
-            $this->validateMobilePhonePattern($mobile);
-        }
-
-        if ($email = $contact->email) {
-            $this->validateMailPattern($email);
-        }
-    }
 }
