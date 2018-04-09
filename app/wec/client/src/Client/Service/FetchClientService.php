@@ -6,7 +6,7 @@ use Wec\Client\Client\Repo\FetchClientRepo;
 
 class FetchClientService extends ServiceBase
 {
-    public function fetchByClientId(string $clientId): ClientDto
+    public function fetchByClientId(string $clientId): ? ClientDto
     {
         return (new FetchClientRepo($this->getDmg()))
             ->fetchByClientId($clientId);
