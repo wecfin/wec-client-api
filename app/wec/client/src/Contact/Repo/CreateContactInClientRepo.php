@@ -12,7 +12,7 @@ class CreateContactInClientRepo extends ContactRepoBase
             throw new \Exception('clientId cannot be null');
         }
 
-        if (!$name = $contact->name) {
+        if (!$contact->name) {
             throw new \Exception('contact name cannot be null');
         }
 

@@ -70,7 +70,6 @@ class CreateClientRepo extends RepoBase
                     ->addStr(trim($client->groupName) ?? '')
                 ->end()
                 ->execute();
-
         } catch (\Exception $e) {
             $cnn->trans()->rollback();
             throw new \Exception($e->getMessage());
@@ -81,7 +80,7 @@ class CreateClientRepo extends RepoBase
         return $client;
     }
 
-    function validate(ClientDto $client): void
+    protected function validate(ClientDto $client): void
     {
         if (!trim($client->name)) {
             throw new \Exception('client name cannot be null');

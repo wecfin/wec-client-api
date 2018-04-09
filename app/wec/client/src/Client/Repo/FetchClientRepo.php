@@ -26,4 +26,18 @@ class FetchClientRepo extends ClientRepoBase
             ->limit(1)
             ->fetch(ClientDto::class);
     }
+
+    public function fetchByClientId(string $clientId): ? ClientDto
+    {
+        if (!$clientId) {
+            throw new \Exception('clientId cannot be null');
+        }
+
+        $ssb = $this->getClientSsb();
+        return $ssb
+            ->where()
+                ->expect('c.clientId')->equal()->str($clientId)
+            ->end()
+            ->fetch(ClientDto::class);
+    }
 }
