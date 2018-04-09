@@ -29,6 +29,11 @@ $collection
         '/fetch-client',
         'fetchClient',
         'Wec\Client\Client\Open\FetchClientOpen@postOpen'
+    )
+    ->postOpen(
+        '/update-client',
+        'updateClient',
+        'Wec\Client\Client\Open\UpdateClientOpen@postOpen'
     );
     
 return $collection;
