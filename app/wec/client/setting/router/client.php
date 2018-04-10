@@ -34,6 +34,16 @@ $collection
         '/delete-client',
         'deleteClient',
         'Wec\Client\Client\Open\DeleteClientOpen@postOpen'
+    )
+    ->postOpen(
+        '/update-client',
+        'updateClient',
+        'Wec\Client\Client\Open\UpdateClientOpen@postOpen'
+    )
+    ->postOpen(
+        '/filter-customer',
+        'filterCustomer',
+        'Wec\Client\Client\Open\FilterCustomerOpen@postOpen'
     );
     
 return $collection;

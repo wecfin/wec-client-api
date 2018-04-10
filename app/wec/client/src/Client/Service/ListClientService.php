@@ -18,9 +18,9 @@ class ListClientService extends ServiceBase
             ->listByEmployeeId($employeeId, $type);
     }
 
-    public function listByGroupId(string $groupId, string $type = ''): Collection
+    public function listByGroups(array $groups, string $type = ''): Collection
     {
         return (new ListClientRepo($this->getDmg()))
-            ->listByGroupId($groupId, $type);
+            ->listByGroups($groups, $type);
     }
 }

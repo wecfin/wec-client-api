@@ -9,11 +9,11 @@ class ListClientByGroupOpen extends ClientOpenBase
     public function postOpen(): JsonResponse
     {
         $post = $this->request->request;
-        $groupId = $post->get('groupId');
+        $groups = json_decode($post->get('groups'));
         $type = $post->get('type', '');
 
         $clients = (new ListClientService($this->getApp()))
-            ->listByGroupId($groupId, $type);
+            ->listByGroups($groups, $type);
         
         $countPerPage = (int)$post->get('countPerPage');
         $page = (int)$post->get('page');
