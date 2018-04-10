@@ -42,19 +42,27 @@ class ListClientRepo extends ClientRepoBase
             ->list(ClientDto::class);
     }
 
-    public function listByGroupId(string $groupId, string $type = ''): Collection
+    public function listByGroups(array $groups = [], string $type = ''): Collection
     {
-        if (!$groupId) {
+        if (!count($groups)) {
             throw new \Exception('groupId cannot be null');
         }
 
         $ssb = $this->getClientSsb();
+        $where = $ssb->where();
 
-        return $ssb
-            ->where()
+        $groupId = array_pop($groups);
+        
+        $where
+            ->expect('o.groupId')->equal()->str($groupId)
+            ->andExpect('c.type')->equal()->str($type);
+
+        foreach ($groups as $groupId) {
+            $where->orGroup()
                 ->expect('o.groupId')->equal()->str($groupId)
-                ->andExpect('c.type')->equal()->str($type)
-            ->end()
-            ->list(ClientDto::class);
+            ->end();
+        }
+
+        return $ssb ->list(ClientDto::class);
     }
 }
