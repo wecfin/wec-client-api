@@ -19,6 +19,11 @@ $collection
         '/update-contact-in-client',
         'updateContactInClient',
         'Wec\Client\Contact\Open\UpdateContactInClientOpen@postOpen'
+    )
+    ->postOpen(
+        '/delete-contact-in-client',
+        'deleteContactInClient',
+        'Wec\Client\Contact\Open\DeleteContactInClientOpen@postOpen'
     );
 
 return $collection;
