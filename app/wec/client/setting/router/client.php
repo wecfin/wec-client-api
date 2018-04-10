@@ -31,9 +31,9 @@ $collection
         'Wec\Client\Client\Open\FetchClientOpen@postOpen'
     )
     ->postOpen(
-        '/update-client',
-        'updateClient',
-        'Wec\Client\Client\Open\UpdateClientOpen@postOpen'
+        '/delete-client',
+        'deleteClient',
+        'Wec\Client\Client\Open\DeleteClientOpen@postOpen'
     );
     
 return $collection;
