@@ -18,14 +18,10 @@ class FilterCustomerOpen extends ClientOpenBase
                 'q' => $post->get('q', '')
             ]);
         
-        // var_dump($clients);exit();
-        // foreach ($clients as $client) {
-        //     var_dump($client);
-        // }
-        // $countPerPage = (int)$post->get('countPerPage');
-        // $page = (int)$post->get('page');
+        $countPerPage = (int)$post->get('countPerPage');
+        $page = (int)$post->get('page');
 
-        // $clients = $this->selectClientByPagination($clients, $page, $countPerPage);
+        $clients = $this->selectClientByPagination($clients, $page, $countPerPage);
         
         return new JsonResponse($clients);
     }
