@@ -14,7 +14,7 @@ class UpdateCashAcctInClientOpen extends OpenBase
         $cashAcct = new CashAcctDto([
             'cashAcctId' =>  $post->get('cashAcctId'),
             'cashAcctName' => $post->get('cashAcctName'),
-            'jsonData' => $post->get('jsonData'),
+            'detail' => $post->get('detail'),
             'type' => $post->get('type')
         ]);
 

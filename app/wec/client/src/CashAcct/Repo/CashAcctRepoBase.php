@@ -7,7 +7,7 @@ class CashAcctRepoBase extends \Wec\Client\Base\Repo\RepoBase
 {
     public function validateCashAcct(CashAcctDto $cashAcct): void
     {
-        $defaultTypeArr = ['bkacct','alipay','paypal'];
+        $defaultTypeArr = ['bkacct', 'alipay', 'paypal', 'wechat'];
 
         if (!$cashAcct->type || !in_array($cashAcct->type, $defaultTypeArr)) {
             throw new \Exception('cashAcct type error');

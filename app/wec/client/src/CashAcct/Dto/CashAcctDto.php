@@ -5,7 +5,7 @@ class CashAcctDto extends DtoBase
 {
     public $cashAcctId;
     public $cashAcctName;
-    public $jsonData;
+    public $detail;
     public $type;
     public $created;
     public $changed;

@@ -25,7 +25,7 @@ class CreateCashAcctInClientRepo extends CashAcctRepoBase
                 'clientId',
                 'cashAcctId',
                 'cashAcctName',
-                'jsonData',
+                'detail',
                 'type',
                 'created',
                 'changed'
@@ -34,7 +34,7 @@ class CreateCashAcctInClientRepo extends CashAcctRepoBase
                 ->addStr($clientId)
                 ->addStr($cashAcct->cashAcctId)
                 ->addStr(trim($cashAcct->cashAcctName))
-                ->addStr($cashAcct->jsonData)
+                ->addStr($cashAcct->detail)
                 ->addStr($cashAcct->type)
                 ->addDateTime($cashAcct->created)
                 ->addDateTime($cashAcct->changed)

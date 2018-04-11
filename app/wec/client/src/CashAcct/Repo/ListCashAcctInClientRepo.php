@@ -16,7 +16,7 @@ class ListCashAcctInClientRepo extends RepoBase
             ->select(
                 'cashAcctId',
                 'cashAcctName',
-                'jsonData',
+                'detail',
                 'type',
                 'created',
                 'changed'

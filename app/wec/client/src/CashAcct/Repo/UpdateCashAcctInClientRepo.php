@@ -16,7 +16,7 @@ class UpdateCashAcctInClientRepo extends CashAcctRepoBase
         $this->cnn->usb()
             ->update('client_cash_acct')->end()
             ->set('cashAcctName')->str(trim($cashAcct->cashAcctName))
-            ->set('jsonData')->str($cashAcct->jsonData)
+            ->set('detail')->str($cashAcct->detail)
             ->set('type')->str($cashAcct->type)
             ->where()
                 ->expect('cashAcctId')->equal()->str($cashAcctId)
