@@ -27,6 +27,7 @@ class CreateCashAcctInClientRepo extends CashAcctRepoBase
                 'cashAcctName',
                 'detail',
                 'type',
+                'isActive',
                 'created',
                 'changed'
             )
@@ -36,6 +37,7 @@ class CreateCashAcctInClientRepo extends CashAcctRepoBase
                 ->addStr(trim($cashAcct->cashAcctName))
                 ->addStr($cashAcct->detail)
                 ->addStr($cashAcct->type)
+                ->addInt(1)
                 ->addDateTime($cashAcct->created)
                 ->addDateTime($cashAcct->changed)
             ->end()

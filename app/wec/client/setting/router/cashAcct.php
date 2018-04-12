@@ -24,6 +24,11 @@ $collection
         '/list-cash-acct-in-client',
         'listCashAcctInClient',
         'Wec\Client\CashAcct\Open\ListCashAcctInClientOpen@post'
+    )
+    ->postOpen(
+        '/block-cash-acct-in-client',
+        'blockCashAcctInClient',
+        'Wec\Client\CashAcct\Open\BlockCashAcctInClientOpen@post'
     );
 
 return $collection;

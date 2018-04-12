@@ -24,6 +24,7 @@ class ListCashAcctInClientRepo extends RepoBase
             ->from('client_cash_acct')->end()
             ->where()
                 ->expect('clientId')->equal()->str($clientId)
+                ->andExpect('isActive')->equal()->int(1)
             ->end()
             ->descOrderBy('changed')
             ->list(CashAcctDto::class);
