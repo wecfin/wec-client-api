@@ -2,6 +2,7 @@
 namespace Wec\Client\Contact\Repo;
 
 use Wec\Client\Contact\Dto\ContactDto;
+use Gap\Dto\DateTime;
 
 class UpdateContactInClientRepo extends ContactRepoBase
 {
@@ -17,6 +18,7 @@ class UpdateContactInClientRepo extends ContactRepoBase
 
         $this->validate($contact);
 
+        $now = new DateTime();
         $this->cnn->usb()
             ->update('client_contact c')
             ->end()
@@ -24,6 +26,7 @@ class UpdateContactInClientRepo extends ContactRepoBase
             ->set('c.tel')->str(trim($contact->tel))
             ->set('c.mobile')->str(trim($contact->mobile))
             ->set('c.email')->str(trim($contact->email))
+            ->set('c.changed')->str($now)
             ->where()
                 ->expect('c.contactId')->equal()->str($contactId)
             ->end()
