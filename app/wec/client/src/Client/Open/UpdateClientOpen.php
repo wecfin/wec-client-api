@@ -3,6 +3,8 @@ namespace Wec\Client\Client\Open;
 
 use Gap\Http\JsonResponse;
 use Wec\Client\Client\Service\UpdateClientService;
+use Wec\Client\Client\Service\FetchClientService;
+
 use Wec\Client\Client\Dto\ClientDto;
 
 class UpdateClientOpen extends OpenBase
@@ -20,9 +22,10 @@ class UpdateClientOpen extends OpenBase
 
         (new UpdateClientService($this->getApp()))
             ->updateByClientId($clientId, $client);
+        
+        $client = (new FetchClientService($this->getApp()))
+            ->fetchByClientId($clientId);
 
-        return new JsonResponse([
-            'status' => 'OK'
-        ]);
+        return new JsonResponse($client);
     }
 }
