@@ -6,7 +6,7 @@ use Gap\Dto\DateTime;
 
 class CreateCashAcctInClientRepo extends CashAcctRepoBase
 {
-    public function create(CashAcctDto $cashAcct, string $clientId = ''): CashAcctDto
+    public function create(string $clientId, CashAcctDto $cashAcct): CashAcctDto
     {
         if (!$clientId) {
             throw new \Exception('clientId cannot be null');

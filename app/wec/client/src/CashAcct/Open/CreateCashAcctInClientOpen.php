@@ -19,7 +19,7 @@ class CreateCashAcctInClientOpen extends OpenBase
         ]);
 
         (new CreateCashAcctInClientService($this->getApp()))
-            ->create($cashAcct, $clientId);
+            ->create($clientId, $cashAcct);
 
         return new JsonResponse($cashAcct);
     }
