@@ -20,7 +20,7 @@ class CreateClientRepo extends RepoBase
             ->generate($companyId, $client->type);
 
         $client->source = $client->source ?? 'system';
-        
+
         $now = new DateTime();
         $client->created = $now;
         $client->changed = $now;
@@ -38,6 +38,8 @@ class CreateClientRepo extends RepoBase
                 'type',
                 'name',
                 'address',
+                'source',
+                'isActive',
                 'created',
                 'changed'
             )
@@ -48,6 +50,8 @@ class CreateClientRepo extends RepoBase
                 ->addStr($client->type)
                 ->addStr(trim($client->name))
                 ->addStr($client->address ?? '')
+                ->addStr($client->source)
+                ->addStr(1)
                 ->addDateTime($client->created)
                 ->addDateTime($client->changed)
             ->end()

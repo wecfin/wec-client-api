@@ -9,12 +9,12 @@ class DeleteClientRepo extends RepoBase
             throw new Exception("clientId cannot be null");
         }
 
-        $this->cnn->dsb()
-            ->delete()
-            ->from('client')
+        $this->cnn->usb()
+            ->update('client c')
             ->end()
+            ->set('c.isActive')->int(0)
             ->where()
-                ->expect('clientId')->equal()->str($clientId)
+                ->expect('c.clientId')->equal()->str($clientId)
             ->end()
             ->execute();
     }

@@ -22,6 +22,7 @@ class ListClientRepo extends ClientRepoBase
             ->where()
                 ->expect('c.companyId')->equal()->str($companyId)
                 ->andExpect('c.type')->equal()->str($type)
+                ->andExpect('c.isActive')->equal()->int(1)
             ->end()
             ->list(ClientDto::class);
     }
@@ -38,6 +39,7 @@ class ListClientRepo extends ClientRepoBase
             ->where()
                 ->expect('o.employeeId')->equal()->str($employeeId)
                 ->andExpect('c.type')->equal()->str($type)
+                ->andExpect('c.isActive')->equal()->int(1)
             ->end()
             ->list(ClientDto::class);
     }
@@ -55,7 +57,8 @@ class ListClientRepo extends ClientRepoBase
         
         $where
             ->expect('o.groupId')->equal()->str($groupId)
-            ->andExpect('c.type')->equal()->str($type);
+            ->andExpect('c.type')->equal()->str($type)
+            ->andExpect('c.isActive')->equal()->int(1);
 
         foreach ($groups as $groupId) {
             $where->orGroup()

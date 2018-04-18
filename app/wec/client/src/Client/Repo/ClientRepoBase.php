@@ -15,6 +15,7 @@ class ClientRepoBase extends \Wec\Client\Base\Repo\RepoBase
             'c.name',
             'c.address',
             'c.source',
+            'c.isActive',
             'o.employeeId employeeId',
             'o.name employeeName',
             'o.groupId groupId',
