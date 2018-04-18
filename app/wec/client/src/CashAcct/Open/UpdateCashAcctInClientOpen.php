@@ -4,6 +4,7 @@ namespace Wec\Client\CashAcct\Open;
 use Gap\Http\JsonResponse;
 use Wec\Client\CashAcct\Dto\CashAcctDto;
 use Wec\Client\CashAcct\Service\UpdateCashAcctInClientService;
+use Wec\Client\CashAcct\Service\FetchCashAcctInClientService;
 
 class UpdateCashAcctInClientOpen extends OpenBase
 {
@@ -11,8 +12,9 @@ class UpdateCashAcctInClientOpen extends OpenBase
     {
         $post = $this->request->request;
 
+        $cashAcctId = $post->get('cashAcctId');
         $cashAcct = new CashAcctDto([
-            'cashAcctId' =>  $post->get('cashAcctId'),
+            'cashAcctId' => $cashAcctId,
             'cashAcctName' => $post->get('cashAcctName'),
             'detail' => $post->get('detail'),
             'type' => $post->get('type')
@@ -20,9 +22,10 @@ class UpdateCashAcctInClientOpen extends OpenBase
 
         (new UpdateCashAcctInClientService($this->getApp()))
             ->update($cashAcct);
+            
+        $cashAcct = (new FetchCashAcctInClientService($this->getApp()))
+            ->fetch($cashAcctId);
 
-        return new JsonResponse([
-            'status' => 'OK'
-        ]);
+        return new JsonResponse($cashAcct);
     }
 }
