@@ -1,20 +1,20 @@
 <?php
 namespace Wec\Client\Client\Service;
 
-use Wec\Client\Client\Repo\FilterCustomerRepo;
+use Wec\Client\Client\Repo\SearchSupplierRepo;
 use Gap\Db\Collection;
 
-class FilterCustomerService extends ServiceBase
+class SearchSupplierService extends ServiceBase
 {
     public function query(array $query): Collection
     {
-        return (new FilterCustomerRepo($this->getDmg()))
+        return (new SearchSupplierRepo($this->getDmg()))
             ->query($query);
     }
 
     public function count(array $query): int
     {
-        return (new FilterCustomerRepo($this->getDmg()))
+        return (new SearchSupplierRepo($this->getDmg()))
             ->count($query);
     }
 }

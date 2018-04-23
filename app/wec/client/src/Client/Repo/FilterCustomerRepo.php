@@ -3,15 +3,23 @@ namespace Wec\Client\Client\Repo;
 
 use Gap\Db\Collection;
 use Wec\Client\Client\Dto\ClientDto;
+use Gap\Db\MySql\SqlBuilder\SelectSqlBuilder;
 
 class FilterCustomerRepo extends ClientRepoBase
 {
     public function query(array $query): Collection
     {
+        return $this->getFilterSsb($query)->list(ClientDto::class);
+    }
+
+    protected function getFilterSsb(array $query): SelectSqlBuilder
+    {
         $ssb = $this->getClientSsb();
         $where = $ssb->where();
 
-        $where->expect('c.type')->equal()->str('customer');
+        $where
+            ->expect('c.type')->equal()->str('customer')
+            ->andExpect('c.isActive')->equal()->int(1);
 
         $companyId = prop($query, 'companyId');
         $groupId = prop($query, 'groupId');
@@ -45,6 +53,11 @@ class FilterCustomerRepo extends ClientRepoBase
             }
         }
 
-        return $ssb->list(ClientDto::class);
+        return $ssb;
+    }
+
+    public function count(array $query): int
+    {
+        return $this->getFilterSsb($query)->count();
     }
 }

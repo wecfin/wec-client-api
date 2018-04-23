@@ -44,6 +44,21 @@ $collection
         '/filter-customer',
         'filterCustomer',
         'Wec\Client\Client\Open\FilterCustomerOpen@postOpen'
+    )
+    ->postOpen(
+        '/search-supplier',
+        'searchSupplier',
+        'Wec\Client\Client\Open\SearchSupplierOpen@postOpen'
+    )
+    ->postOpen(
+        '/count-filter-customer',
+        'countFilterCustomer',
+        'Wec\Client\Client\Open\CountFilterCustomerOpen@postOpen'
+    )
+    ->postOpen(
+        '/count-search-supplier',
+        'countSearchSupplier',
+        'Wec\Client\Client\Open\CountSearchSupplierOpen@postOpen'
     );
     
 return $collection;
